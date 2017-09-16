@@ -1,0 +1,11 @@
+void FindWord(char *word , char *file){
+   char line[1024] ;
+   FILE* fp = fopen(file, "r") ;
+   while (fgets(line , sizeof(line) , fp )!= NULL)
+   {
+      if (strstr(line , word )!= NULL)
+      {
+         printf("%s",line);
+      }
+   }
+}
