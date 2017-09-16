@@ -1,0 +1,14 @@
+size_t n;
+while(fgets(buf,sizeof(buf),fp))
+{
+   char *p = strtok(buf," ");
+   while( p != NULL)
+   {
+      n = strlen(p);
+      if(i>= row && n> col)
+      break;
+      strcpy(x[i],p);
+      i++;
+      p = strtok(NULL," ");
+   }
+}
