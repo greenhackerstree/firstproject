@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+#include<conio.h>
+#include<stdlib.h>
+ 
+void main()
+{
+FILE *fp,*fout;
+int i=0,len_string;
+char SearchText[]="Hello"; /* You can replace this text */
+char ReplaceText[]="Help"; /*You can also replace this text. */
+char temp[30];
+fp=fopen("log.txt","a+");
+fout=fopen("temp.txt","a+");
+rewind(fp); /* for going to start of file. */
+if(fp==NULL || fout==NULL)
+{
+printf("File couldn't be opened ");
+exit(0);
+}
+len_string=strlen(SearchText);
+while(!feof(fp))
+{
+for(i=0;i<len_string;i++) temp[i]=fgetc(fp);
+temp[i]='\0';
+if(stricmp(SearchText,temp)==0) /* the stricmp() is used for comparing both string. */
+{
+     
+fprintf(fp,"%s ",ReplaceText);
+fprintf(fout,"%s",ReplaceText);
+fflush(fp);
+fclose(fp);
+fclose(fout);
+exit(1);
+}
+fseek(fp,-(len_string-1),1);
+}
+fclose(fp);
+fclose(fout);
+}
